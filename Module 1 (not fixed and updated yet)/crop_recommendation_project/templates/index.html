@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroSmart Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container-fluid p-lg-5 p-3">
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h1 class="fw-extrabold" style="font-weight: 800; color: #14452F;">
+            <i class="fas fa-leaf"></i> AgroSmart Predictor
+        </h1>
+        <p class="text-muted fs-5">Hệ thống tư vấn cây trồng dựa trên Hybrid AI & Rule-based.<br>Canh tác thông minh, Nông nghiệp bền vững</p>
+    </div>
+
+    <div class="row g-4">
+        <!-- Sidebar Form -->
+        <div class="col-xl-3 col-lg-4">
+            <div class="card card-sidebar border-0 p-4 shadow-sm">
+                <div class="d-flex align-items-center mb-4">
+                    <h5 class="mb-0 fw-bold">Thông số đầu vào</h5>
+                    <i class="fas fa-tractor ms-auto text-success fs-4"></i>
+                </div>
+
+                <form method="POST">
+                    <label class="small fw-bold mb-1">Nito (N)</label>
+                    <div class="input-group-custom">
+                        <input type="number" step="any" name="N" placeholder="Ví dụ: 40" required>
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <label class="small fw-bold mb-1">Phốt pho (P)</label>
+                            <div class="input-group-custom"><i class="fas fa-vial"></i><input type="number" step="any" name="P" placeholder="P" required></div>
+                        </div>
+                        <div class="col-6">
+                            <label class="small fw-bold mb-1">Kali (K)</label>
+                            <div class="input-group-custom"><i class="fas fa-droplet"></i><input type="number" step="any" name="K" placeholder="K" required></div>
+                        </div>
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <label class="small fw-bold mb-1">Nhiệt độ (°C)</label>
+                            <div class="input-group-custom"><i class="fas fa-temperature-low"></i><input type="number" step="any" name="temperature" placeholder="Độ C" required></div>
+                        </div>
+                        <div class="col-6">
+                            <label class="small fw-bold mb-1">Độ ẩm (%)</label>
+                            <div class="input-group-custom"><i class="fas fa-sun"></i><input type="number" step="any" name="humidity" placeholder="%" required></div>
+                        </div>
+                    </div>
+
+                    <label class="small fw-bold mb-1">Độ pH</label>
+                    <div class="input-group-custom"><span class="ph-label">pH</span><input type="number" step="0.1" name="ph" placeholder="0.0" required></div>
+
+                    <label class="small fw-bold mb-1">Lượng mưa (mm)</label>
+                    <div class="input-group-custom"><i class="fas fa-cloud-showers-heavy"></i><input type="number" step="any" name="rainfall" placeholder="Mưa" required></div>
+
+                    <button type="submit" class="btn btn-predict w-100 fw-bold mt-2">KHỞI TẠO DỰ ĐOÁN</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Result Area -->
+        <div class="col-xl-9 col-lg-8">
+            {% if result %}
+                {% if result.is_low_conf %}
+                    <div class="card border-0 shadow-sm p-5 text-center" style="border-radius: 40px;">
+                        <i class="fas fa-wind fa-4x text-danger mb-3"></i>
+                        <h2 class="fw-bold">Môi trường quá khắc nghiệt!</h2>
+                        <p class="text-muted fs-5">Các chỉ số đo được không phù hợp để canh tác bất kỳ loại cây nào trong danh sách.</p>
+                    </div>
+                {% else %}
+                    <!-- Hero Result -->
+                    <div class="card card-main-result border-0 shadow-lg mb-5 text-white p-4">
+                        <div class="row g-0 align-items-center w-100">
+                            <div class="col-md-4 text-center">
+                                <img src="{{ result.final.image }}" class="rounded-img-hero shadow-lg" onerror="this.src='https://via.placeholder.com/400?text=Crop'">
+                            </div>
+                            <div class="col-md-5 p-4">
+                                <h6 class="text-uppercase opacity-75 fw-bold mb-2">Cây trồng đề xuất tốt nhất</h6>
+                                <h1 class="display-2 fw-bold mb-0">{{ result.final.crop }}</h1>
+                                <p class="fs-4">Độ phù hợp: <span class="fw-bold">{{ result.final.accuracy }}%</span></p>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <div class="progress-circle-box mx-auto" style="background: conic-gradient(#fff {{ result.final.accuracy * 3.6 }}deg, rgba(255,255,255,0.1) 0deg)">
+                                    <div class="circle-inner">{{ result.final.accuracy }}%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top 3 -->
+                    <h5 class="fw-bold mb-4"><i class="fas fa-list-ol text-success me-2"></i> Danh sách Top 3 ứng viên hàng đầu</h5>
+                    <div class="row g-4">
+                        {% for item in result.top_3 %}
+                        <div class="col-md-4">
+                            <div class="card card-sub-crop border-0 shadow-sm p-4">
+                                <div class="d-flex align-items-center mb-4">
+                                    <img src="{{ item.image }}" class="crop-thumb shadow-sm me-3" onerror="this.src='https://via.placeholder.com/100?text=Plant'">
+                                    <h5 class="fw-bold mb-0 text-truncate">{{ item.crop }}</h5>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted small">Điểm Rule:</span>
+                                    <span class="text-warning small fw-bold">
+                                        {% set stars = (item.score / 2) | int %}
+                                        {% for i in range(stars) %}<i class="fas fa-star"></i>{% endfor %}
+                                        <span class="text-muted opacity-50">{{ item.score }}/11</span>
+                                    </span>
+                                </div>
+
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="text-muted small">Độ phù hợp</span>
+                                        <span class="small fw-bold">{{ item.accuracy }}%</span>
+                                    </div>
+                                    <div class="progress" style="height: 10px; border-radius: 20px; background: #eee;">
+                                        <div class="progress-bar" style="width: {{ item.accuracy }}%; background: #2D6A4F;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-muted small">Trạng thái</span>
+                                    {% if item.crop == result.final.crop %}
+                                        <span class="badge-custom bg-best"><i class="fas fa-check-circle"></i> Best Choice</span>
+                                    {% else %}
+                                        <span class="badge-custom bg-good">Good Option</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% else %}
+                <!-- Empty State -->
+                <div class="text-center p-5 mt-5 opacity-50">
+                    <i class="fas fa-chart-pie fa-5x text-success mb-4"></i>
+                    <h3>Hệ thống đang sẵn sàng</h3>
+                    <p>Vui lòng nhập thông số đất và môi trường bên trái để bắt đầu phân tích AI.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
