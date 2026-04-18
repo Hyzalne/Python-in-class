@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+body {
+    background-color: #F8FAF9;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #1A1C1B;
+}
+
+/* Warning Alert Styling */
+.alert-warning-custom {
+    background: linear-gradient(135deg, #FFF5F5 0%, #FFE8E8 100%);
+    border: 1.5px solid #F08080;
+    border-left: 4px solid #DC2626;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.alert-warning-custom i {
+    color: #DC2626;
+    font-size: 20px;
+    min-width: 24px;
+    margin-top: 2px;
+}
+
+.alert-warning-custom-title {
+    font-weight: 700;
+    color: #991B1B;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.alert-warning-custom-message {
+    color: #7F1D1D;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Sidebar Styling */
+.card-sidebar {
+    border-radius: 30px;
+    background: #ffffff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03) !important;
+}
+
+.input-group-custom {
+    display: flex;
+    align-items: center;
+    background: #F1F5F2;
+    border-radius: 15px;
+    padding: 10px 18px;
+    margin-bottom: 15px;
+}
+
+.input-group-custom i, .ph-label {
+    color: #4A7C59;
+    width: 25px;
+    font-size: 16px;
+}
+
+.input-group-custom input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-weight: 600;
+    color: #2D3436;
+}
+
+.hint-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #cfd8d3;
+    background: #ffffff;
+    color: #6b7280;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+}
+
+.hint-icon:hover {
+    border-color: #2D6A4F;
+    color: #2D6A4F;
+}
+
+.btn-predict {
+    background: #14452F;
+    color: white;
+    border-radius: 18px;
+    padding: 15px;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-predict:hover {
+    background: #0d2e1f;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(20, 69, 47, 0.2);
+}
+
+/* Hero Section */
+.card-main-result {
+    background: linear-gradient(135deg, #14452F 0%, #2D6A4F 100%);
+    border-radius: 40px;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+}
+
+.rounded-img-hero {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50px;
+    border: 5px solid rgba(255,255,255,0.1);
+}
+
+/* Circular Progress */
+.progress-circle-box {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: rgba(255,255,255,0.1);
+}
+
+.circle-inner {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #14452F;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Sub-cards */
+.card-sub-crop {
+    border-radius: 25px;
+    background: white;
+    transition: 0.3s;
+}
+
+.card-sub-crop:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08) !important;
+}
+
+.crop-thumb {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.badge-custom {
+    padding: 8px 15px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.bg-best { background: #FFF9E6; color: #D4A017; border: 1px solid #FFD700; }
+.bg-good { background: #E8F2EC; color: #2D6A4F; }
+
+/* History */
+.history-item {
+    background: #f4f7f5;
+    border: 1px solid #e6ece8;
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+}
+
+/* Detail modal */
+.modal-header-custom {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.modal-header-custom img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-header-custom .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.15));
+}
+
+.modal-title-wrap {
+    position: absolute;
+    left: 24px;
+    bottom: 20px;
+}
+
+.detail-chip {
+    background: #f7faf8;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.detail-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.detail-chip i {
+    font-size: 28px;
+    margin-bottom: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.detail-chip small {
+    display: block;
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.detail-chip strong {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Thông số - Color variants */
+.detail-chip.nito { background-color: #E8F5E9; }
+.detail-chip.nito i { background: #4CAF50; color: white; }
+.detail-chip.nito strong { color: #2E7D32; }
+
+.detail-chip.phosphorus { background-color: #E3F2FD; }
+.detail-chip.phosphorus i { background: #2196F3; color: white; }
+.detail-chip.phosphorus strong { color: #1565C0; }
+
+.detail-chip.potassium { background-color: #FFF3E0; }
+.detail-chip.potassium i { background: #FF9800; color: white; }
+.detail-chip.potassium strong { color: #E65100; }
+
+.detail-chip.ph { background-color: #F3E5F5; }
+.detail-chip.ph i { background: #9C27B0; color: white; }
+.detail-chip.ph strong { color: #6A1B9A; }
+
+.detail-chip.temperature { background-color: #FFEBEE; }
+.detail-chip.temperature i { background: #F44336; color: white; }
+.detail-chip.temperature strong { color: #C62828; }
+
+.detail-chip.humidity { background-color: #FFFDE7; }
+.detail-chip.humidity i { background: #FBC02D; color: white; }
+.detail-chip.humidity strong { color: #F57F17; }
+
+.detail-chip.rainfall { background-color: #E0F2F1; }
+.detail-chip.rainfall i { background: #00BCD4; color: white; }
+.detail-chip.rainfall strong { color: #00695C; }
+
+/* Điều kiện & Kỹ thuật canh tác */
+.condition-card {
+    background: white;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    transition: all 0.3s;
+}
+
+.condition-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: #DDD;
+}
+
+.condition-card i {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.condition-card.light i { background: #FFF9C4; color: #F57F17; }
+.condition-card.pests i { background: #FFEBEE; color: #C62828; }
+.condition-card.soil i { background: #F1F8E9; color: #558B2F; }
+.condition-card.care i { background: #E8F5E9; color: #2E7D32; }
+
+.condition-card-content h6 {
+    margin: 0 0 8px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.condition-card-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Analysis */
+.analysis-card {
+    border-radius: 24px;
+}
+
+.nutrient-row {
+    border-bottom: 1px dashed #dbe5df;
+    padding: 10px 0;
+}
