@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-agro-dark: #14452F;
+  --color-agro-green: #2D6A4F;
+  --color-agro-accent: #52B788;
+  --color-agro-bg: #F8FAF9;
+  --color-agro-input: #F1F5F2;
+}
+
+@layer base {
+  body {
+    @apply bg-agro-bg text-gray-900 antialiased;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-agro-green/20 rounded-full;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-agro-green/40;
+}
